@@ -1,6 +1,6 @@
 src
 demo
 .idea
+examples
 .babelrc
 .gitignore
-webpack.config.js
