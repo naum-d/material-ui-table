@@ -1,10 +1,13 @@
 {
-  "name": "@naum_d/material-ui-table",
+  "name": "material-ui-grid",
   "version": "1.0.0",
-  "main": "./lib/material-ui-table.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "start": "webpack-dev-server --mode development",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run transpile",
+    "publish": "npm publish"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
@@ -12,16 +15,21 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^7.1.4",
+    "babel-node": "^0.0.1-security",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.24.1",
+    "html-webpack-plugin": "^4.2.0",
+    "nodemon": "^2.0.3",
     "path": "^0.12.7",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "webpack": "^4.5.0",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.10.3"
   }
 }
