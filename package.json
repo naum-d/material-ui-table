@@ -1,35 +1,44 @@
 {
-  "name": "material-ui-grid",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "@naum_d/material-ui-table",
+  "version": "0.0.5",
+  "description": "",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "transpile": "babel src -d dist --copy-files",
-    "prepublishOnly": "npm run transpile",
-    "publish": "npm publish"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --config ./demo/webpack.config.js --mode development",
+    "build": "babel src --out-dir dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naum-d/material-ui-table.git"
+  },
+  "author": "naum_d",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/naum-d/material-ui-table/issues"
+  },
+  "homepage": "https://github.com/naum-d/material-ui-table#readme",
   "peerDependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.21.0",
-    "babel-loader": "^7.1.4",
-    "babel-node": "^0.0.1-security",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.24.1",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
     "html-webpack-plugin": "^4.2.0",
-    "nodemon": "^2.0.3",
-    "path": "^0.12.7",
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^3.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
   }
 }
