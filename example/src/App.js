@@ -5,10 +5,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppTableContainer from './AppTableContainer';
 
 const App = () => {
+
   return (
     <Fragment>
       <CssBaseline />
-      <AppTableContainer />
+      <main>
+        <AppTableContainer />
+      </main>
     </Fragment>
   );
 };

@@ -10,9 +10,7 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@naum-d/material-ui-table": "link:..",
+    "@naum_d/material-ui-table": "link:..",
     "fontsource-roboto": "^3.0.3",
     "install": "^0.13.0",
     "prop-types": "^15.7.2",

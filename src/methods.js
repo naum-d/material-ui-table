@@ -1,3 +1,15 @@
+export const getFromObject = (key, obj) => {
+  return key.split('.').reduce((obj, key) => (!!obj ? obj[key] : null), obj);
+};
+
+export const getFields = (columns, can) => {
+  return Object.fromEntries(new Map(
+    columns
+      .filter(i => can in i ? !!i[can] : true)
+      .map(i => [i['field'], i['lookup'] || (i => i)]),
+  ));
+};
+
 export const turnOffEvent = (e, callback) => {
   e.preventDefault();
   e.stopPropagation();
@@ -6,11 +18,12 @@ export const turnOffEvent = (e, callback) => {
 
 export const searchInTable = (str, table, columns) => {
   let res = [];
-  const fields = columns.filter(i => 'canSearch' in i ? !!i['canSearch'] : true).map(i => i['field']);
+  const fields = getFields(columns, 'canSearch');
 
   for (const row of table) {
-    for (const field of fields) {
-      if ((row[field]['lookup'] || row[field]).toString().toLowerCase().includes(str)) {
+    for (const field of Object.keys(fields)) {
+      const val = fields[field](getFromObject(field, row)) || '';
+      if (JSON.stringify(val).toLowerCase().includes(str)) {
         res = [...res, row];
         break;
       }
@@ -44,4 +57,39 @@ export const stableSort = (array, comparator) => {
     return a[1] - b[1];
   });
   return stabilizedThis.map((el) => el[0]);
+};
+
+export const getFilterTable = (table, filters) => {
+  const res = [];
+
+  tableLoop: for (const row of table) {
+    for (const field in filters) {
+      if (getFromObject(field, row).toString().toLowerCase() === filters[field].toString().toLowerCase()) continue;
+      else continue tableLoop;
+    }
+    res.push(row);
+  }
+
+  return res;
+};
+
+export const arrayToTree = (array, parentField) => {
+  let tree = [];
+  let nodes = {};
+
+  for (let item of array) {
+    nodes[item['id']] = item;
+    nodes[item['id']]['children'] = [];
+  }
+
+  for (let id in nodes) {
+    const item = nodes[id];
+    if (!!item[parentField] && !!nodes[item[parentField]]) {
+      nodes[item[parentField]]['children'].push(item);
+    }
+    else {
+      tree.push(item);
+    }
+  }
+  return tree;
 };
