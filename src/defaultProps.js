@@ -8,6 +8,9 @@ export const defaultProps = {
     table: [],
     columns: [],
     selected: [],
+    canSelect: false,
+    rowsCount: 0,
+    rowHover: true,
   },
   methods: {
     onOrderChange: () => {},

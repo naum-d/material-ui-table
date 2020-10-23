@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react';
+import 'fontsource-roboto';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { ExampleComponent } from 'material-ui-table'
-import 'material-ui-table/dist/index.css'
+import AppTableContainer from './AppTableContainer';
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+  return (
+    <Fragment>
+      <CssBaseline />
+      <AppTableContainer />
+    </Fragment>
+  );
+};
 
-export default App
+export default App;
