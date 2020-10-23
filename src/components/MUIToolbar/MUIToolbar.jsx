@@ -7,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import ClearIcon from '@material-ui/icons/Clear';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -55,14 +54,19 @@ const MUIToolbar = () => {
   const renderActionsSelected = () => {
     return Object.keys(actions.toolbarSelected).map((key) => {
       const { onClick, component } = actions.toolbarSelected[key];
-      const props = { key, onClick: (e) => turnOffEvent(e, onClick)(selected) };
-      return !!component ? component(props) : <Button {...props} children={key} />;
+      const props = { key, onClick: e => turnOffEvent(e, onClick)(selected) };
+      return !!component ? component({ ...props }) : <Button {...props} children={key} />;
     });
   };
 
   const renderInputProps = () => {
     return {
-      endAdornment: <InputAdornment children={<IconButton onClick={handleClear} children={<ClearIcon />} />} />,
+      endAdornment: (
+        <InputAdornment
+          position="end"
+          children={<Button size="small" onClick={handleClear} children={<ClearIcon fontSize="small" />} />}
+        />
+      ),
     };
   };
 
