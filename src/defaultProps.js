@@ -3,10 +3,14 @@ export const defaultProps = {
     size: 5,
     page: 0,
     search: '',
+    order: 'asc',
+    orderBy: null,
     table: [],
+    columns: [],
     selected: [],
   },
   methods: {
+    onOrderChange: () => {},
     onSearchChange: () => {},
   },
   actions: {
