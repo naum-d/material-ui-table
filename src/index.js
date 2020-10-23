@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import { defaultProps } from './defaultProps';
 import TableContext from './components/TableContext';
 import MUIToolbar from './components/MUIToolbar/MUIToolbar';
+import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@material-ui/core/Table';
+import MUIHeader from './components/MUIHeader/MUIHeader';
+import MUIBody from './components/MUIBody/MUIBody';
 
 const MUITable = (props) => {
 
@@ -23,6 +27,12 @@ const MUITable = (props) => {
   return (
     <TableContext.Provider value={[context, setContext]}>
       <MUIToolbar />
+      <TableContainer>
+        <Table>
+          <MUIHeader />
+          <MUIBody />
+        </Table>
+      </TableContainer>
     </TableContext.Provider>
   );
 };
@@ -32,10 +42,14 @@ MUITable.propTypes = {
     size: PropTypes.number,
     page: PropTypes.number,
     search: PropTypes.string,
+    order: PropTypes.string,
+    orderBy: PropTypes.string,
     table: PropTypes.array,
+    columns: PropTypes.array,
     selected: PropTypes.array,
   }),
   methods: PropTypes.shape({
+    onOrderChange: PropTypes.func,
     onSearchChange: PropTypes.func,
   }),
   actions: PropTypes.shape({

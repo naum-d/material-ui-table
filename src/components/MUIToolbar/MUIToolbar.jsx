@@ -12,7 +12,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import TableContext from '../TableContext';
-import { turnOffEvent } from '../../helpers/helpers';
+import { turnOffEvent } from '../../methods';
 
 const useStyles = makeStyles(theme => ({
   toolbarSelected: {
@@ -30,17 +30,16 @@ const MUIToolbar = () => {
 
   useEffect(() => {
     onSearchChange(search);
-    setContext(old => ({ ...old, options: { ...old.options, page: 0 } }));
-  }, [onSearchChange, search, setContext]);
+  }, [onSearchChange, search]);
 
   const handleSearchChange = e => {
     const { value: search } = turnOffEvent(e, e.target);
-    setContext({ ...context, options: { ...context.options, search } });
+    setContext({ ...context, options: { ...context.options, search, page: 0 } });
   };
 
   const handleClear = e => {
     turnOffEvent(e);
-    setContext({ ...context, options: { ...context.options, search: '' } });
+    setContext({ ...context, options: { ...context.options, search: '', page: 0 } });
   };
 
   const renderBaseActions = () => {
