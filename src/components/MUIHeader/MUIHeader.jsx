@@ -2,15 +2,16 @@ import React, { useContext, useEffect } from 'react';
 import { TableHead } from '@material-ui/core';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 import TableContext from '../TableContext';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { turnOffEvent } from '../../methods';
+import MUIHeaderCheckbox from './MUIHeaderCheckbox';
 
 const MUIHeader = () => {
   const [context, setContext] = useContext(TableContext);
 
-  const { options: { columns, order, orderBy }, methods: { onOrderChange } } = context;
+  const { options: { columns, order, orderBy, canSelect }, methods: { onOrderChange } } = context;
 
   useEffect(() => {
     onOrderChange(order, orderBy);
@@ -38,6 +39,8 @@ const MUIHeader = () => {
   return (
     <TableHead>
       <TableRow>
+        {canSelect && <MUIHeaderCheckbox />}
+
         {renderHeadCell()}
       </TableRow>
     </TableHead>

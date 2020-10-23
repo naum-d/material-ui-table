@@ -47,6 +47,9 @@ MUITable.propTypes = {
     table: PropTypes.array,
     columns: PropTypes.array,
     selected: PropTypes.array,
+    canSelect: PropTypes.bool,
+    rowsCount: PropTypes.number,
+    rowHover: PropTypes.bool,
   }),
   methods: PropTypes.shape({
     onOrderChange: PropTypes.func,

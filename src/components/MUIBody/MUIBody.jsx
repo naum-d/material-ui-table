@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 
+import MUIRow from '../MUIRow/MUIRow';
 import TableContext from '../TableContext';
 import { getComparator, searchInTable, stableSort } from '../../methods';
 
@@ -29,22 +28,9 @@ const MUIBody = () => {
     console.log('-----', page, size);
   }, [orderTable, page, size]);
 
-  const renderRows = () => {
-    return print.map(row => (
-      <TableRow key={row.id}>
-        {columns.map(({ field, cellProps, lookup }) => (
-          <TableCell key={field} {...cellProps} >
-            {!lookup && row[field]}
-            {!!lookup && lookup(row[field])}
-          </TableCell>
-        ))}
-      </TableRow>
-    ));
-  };
-
   return (
     <TableBody>
-      {renderRows()}
+      {print.map((row, key) => <MUIRow {...{ key, row }} />)}
     </TableBody>
   );
 };
