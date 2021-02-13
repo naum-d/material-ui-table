@@ -106,7 +106,6 @@ const MUIRow = ({ row, level, closed }) => {
 
   return !closed && (
     <Fragment>
-      {console.log(row)}
       <TableRow
         selected={checked}
         onClick={handleClick}
