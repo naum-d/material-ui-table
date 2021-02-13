@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }),
 }));
 
-const MUIRow = ({ row, level, closed }) => {
+const MUIRow = ({ row, level, closed, rowStyle }) => {
   const classes = useStyles(level);
   const [form, setForm] = useState({});
   const [open, setOpen] = useState(false);
@@ -111,6 +111,7 @@ const MUIRow = ({ row, level, closed }) => {
         onClick={handleClick}
         hover={canSelect || !!onRowClick}
         className={clsx({ [classes.row]: canSelect || !!onRowClick })}
+        style={{ ...rowStyle }}
       >
         <MUIRowShowChildren {...{ row, level, open }} handleClick={handleShowChildren} />
 
@@ -148,11 +149,13 @@ MUIRow.propTypes = {
   row: PropTypes.object,
   closed: PropTypes.bool,
   level: PropTypes.number,
+  rowStyle: PropTypes.object,
 };
 
 MUIRow.defaultProps = {
   level: 0,
   closed: false,
+  rowStyle: {},
 };
 
 export default MUIRow;
