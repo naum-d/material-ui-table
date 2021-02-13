@@ -26,15 +26,15 @@ const MUIHeader = () => {
   };
 
   const renderHeadCell = () => {
-    return columns.map(({ field, label, cellProps, canSort = true }) => (
+    return columns.map(({ field, label, cellProps, lookupHeader, canSort = true }) => (
       <TableCell key={field} {...cellProps} sortDirection={!!orderBy && orderBy === field && order}>
         {canSort
           ? (
             <TableSortLabel active={!!orderBy && orderBy === field} direction={order} onClick={handleSort(field)}>
-              {label}
+              {lookupHeader || label}
             </TableSortLabel>
           )
-          : label
+          : lookupHeader || label
         }
       </TableCell>
     ));
