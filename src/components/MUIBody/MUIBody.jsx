@@ -19,7 +19,6 @@ const MUIBody = () => {
 
   useEffect(() => {
     if (!serverPaging && strTable.length > 2) {
-      console.log('!!! ORDER TABLE');
       setContext(old => ({ ...old, options: { ...old.options, isLoading: true } }));
 
       const timer = setTimeout(() => {

@@ -50,21 +50,21 @@ const AppTableContainer = () => {
   useEffect(() => {
     if (!!getUrl.length) {
       setIsLoading(true);
-      const url = `https://tc-dev.c-cars.tech/api/tc/internationalization/dtc/model/43`;
+      const url = `http://localhost:3000/api/matches/5fce21fd3e1519344297e7e8/teamResults/5f0c540a84ead880c4dfe467`;
       const data = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
-          'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg1ZGViZDc5Mzc2YTUxMzMzNDZjZGZjYTQyYjU0NmJmIiwidHlwIjoiSldUIn0.eyJuYmYiOjE2MDQwNDE5MDksImV4cCI6MTYwNDA0NTUwOSwiaXNzIjoiaHR0cHM6Ly9kZXYwMDMuYy1jYXJzLnRlY2giLCJhdWQiOlsiaHR0cHM6Ly9kZXYwMDMuYy1jYXJzLnRlY2gvcmVzb3VyY2VzIiwiRGV2ZWxvcG1lbnQuU3F1YWRyb24uUHJveHkuQXBpIl0sImNsaWVudF9pZCI6Im5hdGl2ZSIsInN1YiI6IjMzYzRjMDQ1LWExZGMtNDJhMS05ODQ4LTJjYmIzZDUxMTM0NSIsImF1dGhfdGltZSI6MTYwNDAzNzM5MywiaWRwIjoibG9jYWwiLCJuYW1lIjoiMTIzMTIzMTIzIiwicGhvbmVOdW1iZXIiOiIxMjMxMjMxMjMiLCJlbWFpbCI6ImRtYWx5c2hldkBjLWNhcnMudGVjaCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmF0b3IiLCJwZXJtaXNzaW9uIjpbImFkbWluIiwidmVoaWNsZXJlc3RyaWN0aW9uYnlwYXNzIiwiY29udHJhY3RvcnJlc3RyaWN0aW9uYnlwYXNzIl0sInNjb3BlIjpbIkRldmVsb3BtZW50LlNxdWFkcm9uLlByb3h5LkFwaSJdLCJhbXIiOlsicHdkIl19.X2XHhN9UKVelWGU3zsZbdF6SS_rf07-JFW2TyCFH-CsA9BKjmivdA8aolvHx_eCDjeE4vs-Z84igF7e4AfDstgrxBohpYmm6yc1g97k94vw9bCcKbOLMpLLdS5A-fc0OE_M6AtuFQ3xk5M8x_JjJnctOPLIWhxOn4Y_3DPElMAiUcxO2mgtALDdu34WISr0yO_OST4FLd7_iEyg_uf2OX1Y3AUQFDM5QjlmXhCNZuBQM7WfPMsA3UHa0f2rjZOywEbChVvAHueC4VTAY-DIj7FJebFeO60uDztSoQNu3OWu2KlomHvlFesCXGrOuUO2eYLj52YlInf_pI9PeCLiKpA',
+          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWM3NzhjZmNjNzEyYTU0OGM1YjkzZDEiLCJlbWFpbCI6Im1hbmFnZXJAbWFpbC5jb20iLCJpYXQiOjE2MTMyMTQwNTF9.aZjLC3CTD5CWEqNMXiFPdUICuQ7bgJmxKgYH6A9MNWE',
         },
       };
 
       fetch(url, data)
         .then(resp => resp.json())
-        .then(resp => {
-          console.log(resp);
-          setTable(resp);
+        .then(({ table }) => {
+          console.log(table);
+          setTable(table.map(i => ({...i, rowStyle: {backgroundColor: 'red'}})));
           // setRowsCount(total);
           // setIsLoading(false);
         });
