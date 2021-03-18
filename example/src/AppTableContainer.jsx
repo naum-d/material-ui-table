@@ -50,21 +50,21 @@ const AppTableContainer = () => {
   useEffect(() => {
     if (!!getUrl.length) {
       setIsLoading(true);
-      const url = `http://localhost:3000/api/matches/5fce21fd3e1519344297e7e8/teamResults/5f0c540a84ead880c4dfe467`;
+      const url = `http://localhost:8000/api/matches`;
       const data = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWM3NzhjZmNjNzEyYTU0OGM1YjkzZDEiLCJlbWFpbCI6Im1hbmFnZXJAbWFpbC5jb20iLCJpYXQiOjE2MTMyMTQwNTF9.aZjLC3CTD5CWEqNMXiFPdUICuQ7bgJmxKgYH6A9MNWE',
+          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWM3NzZhZWQxZTU0ZjU0NTZiMjdjM2UiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYxNjA0ODM1OX0.KyVJ7LB_wIN7_fOXYNSKEUmWVLwT5zr2LfWa0FYn5Hw',
         },
       };
 
       fetch(url, data)
         .then(resp => resp.json())
-        .then(({ table }) => {
-          console.log(table);
-          setTable(table.map(i => ({...i, rowStyle: {backgroundColor: 'red'}})));
+        .then(resp => {
+          console.log(resp);
+          setTable(resp);
           // setRowsCount(total);
           // setIsLoading(false);
         });
@@ -72,10 +72,8 @@ const AppTableContainer = () => {
   }, [getUrl]);
 
   const columns = [
-    { field: 'ecu_id', label: 'ECU ID' },
-    { field: 'dtc_value', label: 'DTC' },
-    { field: 'en', label: 'EN' },
-    { field: 'ru', label: 'RU' },
+    { field: 'status', label: 'Status' },
+    { field: 'dateCreated', label: 'Date Created' },
   ];
 
   const handleOrderChange = useCallback((order, orderBy) => {
@@ -121,6 +119,8 @@ const AppTableContainer = () => {
               showRowForm,
               rowsCount,
               treeTable: true,
+              showSearch: false,
+              tableLabel: 'Matches',
               childrenField: 'dtc_values',
             }}
             methods={{

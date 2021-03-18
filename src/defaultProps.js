@@ -26,6 +26,7 @@ export const defaultProps = {
     rowsCount: 0,
     serverPaging: false,
     showSearch: true,
+    tableLabel: '',
   },
   methods: {
     onRowClick: null,

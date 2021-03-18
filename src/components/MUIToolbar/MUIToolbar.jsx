@@ -29,7 +29,8 @@ const MUIToolbar = () => {
   const classes = useStyles();
 
   const [context, setContext] = useContext(TableContext);
-  const { table, options: { search, selected, orderTable, showSearch }, methods: { onSearchChange }, actions } = context;
+  const { table, options, methods: { onSearchChange }, actions } = context;
+  const { search, selected, orderTable, showSearch, tableLabel } = options;
 
   const handleSearchChange = e => {
     const { value: search } = turnOffEvent(e, e.target);
@@ -74,15 +75,19 @@ const MUIToolbar = () => {
 
   return (
     <Grid container justify="space-between" alignItems="center" spacing={2} className={classes.root}>
-      {!!showSearch && (
+
+      {(!!showSearch || !!tableLabel) && (
         <Grid item xs={6}>
-          <TextField
-            fullWidth
-            value={search}
-            placeholder="Search"
-            onChange={handleSearchChange}
-            InputProps={renderInputProps()}
-          />
+          {!!tableLabel && <Typography gutterBottom={!!showSearch} variant="h5" children={tableLabel} />}
+          {!!showSearch && (
+            <TextField
+              fullWidth
+              value={search}
+              placeholder="Search"
+              onChange={handleSearchChange}
+              InputProps={renderInputProps()}
+            />
+          )}
         </Grid>
       )}
 
