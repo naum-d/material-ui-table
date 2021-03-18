@@ -122,7 +122,7 @@ const MUIRow = ({ row, level, closed }) => {
         )}
 
         {!showForm && columns.map(({ field, cellProps, lookup }) => (
-          <TableCell key={field} className={classes.cell} {...cellProps} >Y
+          <TableCell key={field} className={classes.cell} {...cellProps} >
             {!lookup && getFromObject(field, row)}
             {!!lookup && lookup(getFromObject(field, row), row)}
           </TableCell>
